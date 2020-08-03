@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Http\Controllers\Api\CampaignApiController as CampaignApi;
+use Datatables;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Request as Req;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use DB;
+use Carbon\Carbon;
+
+
+
+class CampaignController extends Controller
+{
+	public function __construct(CampaignApi $campaignApi){
+        $this->campaignApi = $campaignApi;
+    }
+
+    public function create($value='')
+    {
+        return view('admin.campaign.create_campaign');
+    }
+
+    public function list()
+    {
+        //
+        return view('admin.campaign.list_campaign');
+    }
+
+     public function table(){
+        $data = $this->campaignApi->getCampaign();
+        return Datatables::of($data)->make(true);
+    }
+
+    public function view(Request $request)
+    {
+        $campaign = DB::table('tr_campaign')->where('id',$request->id)->first();
+        $edit = $request->action;
+
+        return view('admin.campaign.detail_campaign')->with(compact('campaign','edit'));
+    }
+
+    public function url_callback()
+    {
+    	$campaign  = base64url_decode(Input::get('utm_campaign'));
+    	$group     = base64url_decode(Input::get('utm_group'));
+    	$recepient = base64url_decode(Input::get('utm_recepient'));
+    	$url = Input::get('url_callback');
+
+    	//update stat detail
+        $ip_address = Req::ip();
+        $location = \Location::get($ip_address);
+        $location_ip_lat = "";
+        $location_ip_long = "";
+        $location_country_name = "";
+        $location_country_code = "";
+        $location_region_name = "";
+        $location_city_name = "";
+        $location_zip_code = "";
+
+        if($location){
+            $location_ip_lat = $location->latitude;
+            $location_ip_long = $location->longitude;
+            $location_country_name = $location->countryName;
+            $location_country_code = $location->countryCode;
+            $location_region_name = $location->regionName;
+            $location_city_name = $location->cityName;
+            $location_zip_code = $location->zipCode;
+        }
+
+        $exist = DB::table('tr_campaign_detail')
+                        ->where('campaign_id',$campaign)
+                        ->where('recepient_group_id',$group)
+                        ->where('recepient_id',$recepient)
+                        ->where('click_time',1)
+                        ->first();
+
+
+
+        if($exist == null){
+    
+        	$update = DB::table('tr_campaign_detail')
+                            ->where('campaign_id',$campaign)
+                            ->where('recepient_group_id',$group)
+                            ->where('recepient_id',$recepient)
+                            ->update([
+                                'click_time' => 1,
+                                'click_time_at' => Carbon::now()->setTimezone('Asia/Jakarta'),
+                                'ip_address' => $ip_address,
+                                'location_ip_lat' => $location_ip_lat, 
+                                'location_ip_long' => $location_ip_long,
+                                'location_country_name' => $location_country_name,
+                                'location_country_code' => $location_country_code,
+                                'location_region_name' => $location_region_name,
+                                'location_city_name' => $location_city_name,
+                                'location_zip_code' => $location_zip_code,
+                            ]);
+
+        }
+
+
+    	return Redirect::to($url);
+    }
+}

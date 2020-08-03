@@ -1,0 +1,8 @@
+sudo /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=http://localhost --redisport=6379 --mongo=mongodb://http://localhost:27017/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="research.edi-indonesia.co.id"
+sudo /opt/tyk-pump/install/setup.sh --redishost=http://localhost --redisport=6379 --mongo=mongodb://http://localhost:27017/tyk_analytics
+sudo /opt/tyk-dashboard/install/bootstrap.sh research.edi-indonesia.co.id:3000
+sudo /opt/tyk-dashboard/install/setup.sh --listenport=3000 --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics --tyk_api_hostname=$HOSTNAME --tyk_node_hostname=http://localhost --tyk_node_port=8080 --portal_root=/portal --domain="research.edi-indonesia.co.id"
+sudo /opt/tyk-dashboard/install/bootstrap.sh research.edi-indonesia.co.id
+sudo /opt/tyk-pump/install/setup.sh --redishost=localhost --redisport=6379 --mongo=mongodb://127.0.0.1/tyk_analytics
+sudo /opt/tyk-gateway/install/setup.sh --dashboard=1 --listenport=8080 --redishost=localhost --redisport=6379
+
