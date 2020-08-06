@@ -48,14 +48,25 @@
                                 <div class="form-column col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto p-4">                    
                                     <div class="inner-column" style="padding: 18px 0px 25px !important;">
                                         <img src="{{asset('/assets/landing/images/logo_transparant.png')}}" class="img-responsive" style="margin-bottom: 10px;">
+
+                                             @if(session()->has('message'))
+                                                <div class="alert {{session('alert') ?? 'alert-info'}} alert-dismissible fade show text-left" role="alert">
+                                                    {{ session('message') }}
+                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                      </button>
+                                                </div>
+                                             @endif
+
                                         <div class="title-box">
                                             <h3>We're sorry to see you go!</h3>
                                             <div class="text" style="font-size: 16px; margin-bottom: 25px;">Before you go, did you know you can... Take a temporary break?</div>
                                         </div>
 
                                         <!--Login Form-->
-                                        <form method="post" action="{{ route('unsubscribe') }}">
+                                        <form method="post" id="frmUnsubsribe" action="{{ route('unsubscribe') }}">
                                            @csrf
+                                            <input type="hidden" name="recepient_id" value="{{$recepient_id}}">
                                             <div class="form-group text-left">
                                                  <input type="radio" class="form-check-input" name="unsubs_option" value="1">I no longer wish to receive these email
                                             </div>
@@ -63,8 +74,8 @@
                                             <div class="form-group text-left">
                                                  <input type="radio" class="form-check-input" name="unsubs_option" value="2">Stop sending emails for:
                                             </div>
-                                            <div class="form-group text-left">
-                                                <select class="form-control" id="sel1" name="unsubs_untill">
+                                            <div class="form-group text-left" id="check_unsubs_until" style="display: none;">
+                                                <select class="form-control" id="sel1" name="unsubs_until">
                                                     <option value="1">1 Month</option>
                                                     <option value="2">2 Months</option>
                                                     <option value="3">3 Months</option>
@@ -94,6 +105,8 @@
                         <li><a href="https://twitter.com/ediindonesia"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="https://www.instagram.com/ediindonesia"><span class="fab fa-instagram"></span></a></li>
                         <li><a href="https://www.youtube.com/user/ptediindonesia"><span class="fab fa-youtube"></span></a></li>
+                        <li><a href="https://edi-indonesia.co.id/"><span class="fas fa-globe"></span></a></li>
+
                     </ul>
                     <p style="margin-top: 10px;">PT Electronics Data Interchange Indonesia</p>
                 </div>
@@ -118,6 +131,20 @@
 <script src="{{asset('/assets/landing/js/wow.js')}}"></script>
 <script src="{{asset('/assets/landing/js/countdown.js')}}"></script>
 <script src="{{asset('/assets/landing/js/script.js')}}"></script>
+<script type="text/javascript">
+
+            $('#frmUnsubsribe').change(function(){
+                var unsubs_option = $("input[name='unsubs_option']:checked").val();
+                
+                if(unsubs_option == 2){
+                    $('#check_unsubs_until').show();
+                }
+                else{
+                    $('#check_unsubs_until').hide();
+                }
+            });
+      
+</script>
 </body>
 
 </html>

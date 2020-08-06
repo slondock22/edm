@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use DB;
 use Carbon\Carbon;
+use Validator;
 
 
 
@@ -107,14 +108,56 @@ class CampaignController extends Controller
 
     public function showUnsubscribe($id_recepient)
     {
-        $recepient = base64url_decode($id_recepient);
-        dd($recepient);
-        return view('mail.unsubscribe');
+        $recepient_id = base64url_decode($id_recepient);
+
+        return view('mail.unsubscribe')->with(compact('recepient_id'));
     }
 
     public function storeUnsubscribe(Request $request)
     {
-        dd($request->all());
+        
+        $validator = Validator::make($request->all(),[
+            'recepient_id'  => 'required',
+            'unsubs_option' => 'required',
+        ]);     
+
+         if ($validator->fails())
+        {
+             return redirect()->back()->with(['message' => 'Please Choose At Least One Reason', 'alert' => 'alert-danger']);  
+        }
+
+
+        $is_active = 0;
+        $unsubs_until = "";
+
+        if($request->unsubs_option == 1){
+            $is_active = 0;
+            $unsubs_until = "";
+            $redirect = redirect('/confirm-unsubscribe');
+        }
+        elseif ($request->unsubs_option == 2) {
+            $is_active = 0;
+            $unsubs_until = Carbon::now()->addMonths($request->unsubs_until);
+            $redirect = redirect('/confirm-unsubscribe');
+        }
+        else{
+            $is_active = 1;
+            $unsubs_until = "";
+            $redirect = redirect()->back()->with(['message' => 'Thank you for trusting us, your email is still in our marketing lists ', 'alert' => 'alert-success']);
+        }
+
+        $unsub = DB::table('tr_recepient')
+                ->where('id',$request->recepient_id)
+                ->update([
+                    'is_active' => $is_active,
+                    'unsubscribe_until' => $unsubs_until
+                    ]);
+
+        if($unsub){
+            return $redirect;
+        }
+
+
     }
 
     public function showConfirmUnsubscribe()

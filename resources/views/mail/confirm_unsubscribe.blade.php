@@ -64,6 +64,8 @@
                         <li><a href="https://twitter.com/ediindonesia"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="https://www.instagram.com/ediindonesia"><span class="fab fa-instagram"></span></a></li>
                         <li><a href="https://www.youtube.com/user/ptediindonesia"><span class="fab fa-youtube"></span></a></li>
+                        <li><a href="https://edi-indonesia.co.id/"><span class="fas fa-globe"></span></a></li>
+                        
                     </ul>
                     <p style="margin-top: 10px;">PT Electronics Data Interchange Indonesia</p>
                 </div>
