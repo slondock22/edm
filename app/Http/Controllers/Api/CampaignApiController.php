@@ -97,6 +97,7 @@ class CampaignApiController extends Controller
                         ->select('a.id as recepient_id','a.recepient_name','a.recepient_email')
                         ->join('tr_recepient_by_group as b','b.recepient_id','a.id')
                         ->where('b.recepient_group_id',$request->recepient_group_id)
+                        ->where('a.is_active','1')
                         ->get();
         // dd($recepient);
 

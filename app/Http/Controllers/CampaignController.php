@@ -105,8 +105,20 @@ class CampaignController extends Controller
     	return Redirect::to($url);
     }
 
-    public function showUnsubscribe()
+    public function showUnsubscribe($id_recepient)
     {
+        $recepient = base64url_decode($id_recepient);
+        dd($recepient);
         return view('mail.unsubscribe');
+    }
+
+    public function storeUnsubscribe(Request $request)
+    {
+        dd($request->all());
+    }
+
+    public function showConfirmUnsubscribe()
+    {
+        return view('mail.confirm_unsubscribe');
     }
 }

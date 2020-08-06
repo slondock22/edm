@@ -161,6 +161,23 @@ a[x-apple-data-detectors] {
                  </tr> 
                </table> </td> 
              </tr> 
+             <tr style="border-collapse:collapse;"> 
+              <td align="left" style="padding:0;Margin:0;padding-top:5px;padding-left:20px;padding-right:20px;"> 
+               <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
+                 <tr style="border-collapse:collapse;"> 
+                  <td width="560" align="center" valign="top" style="padding:0;Margin:0;"> 
+                   <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;"> 
+                     <tr style="border-collapse:collapse;"> 
+                      <td align="center" class="es-m-txt-c" style="padding:0;Margin:0;"> 
+                        <a target="_blank" href="{{url('unsubscribe-newsletter/').$content['recepient_id']}}" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:none;color:#333333;"> 
+                          <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:11px;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:17px;color:#333333;">Unsubscribe This Content</p>
+                        </a> 
+                      </td> 
+                     </tr> 
+                   </table> </td> 
+                 </tr> 
+               </table> </td> 
+             </tr> 
            </table> </td> 
          </tr> 
        </table> </td> 

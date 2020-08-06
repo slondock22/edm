@@ -46,42 +46,12 @@
                         <div class="login-form">
                             <div class="row clearfix">
                                 <div class="form-column col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto p-4">                    
-                                    <div class="inner-column" style="padding: 18px 0px 25px !important;">
+                                    <div class="inner-column" style="padding: 18px 0px 62px !important;">
                                         <img src="{{asset('/assets/landing/images/logo_transparant.png')}}" class="img-responsive" style="margin-bottom: 10px;">
                                         <div class="title-box">
-                                            <h3>We're sorry to see you go!</h3>
-                                            <div class="text" style="font-size: 16px; margin-bottom: 25px;">Before you go, did you know you can... Take a temporary break?</div>
+                                            <h3>You are now successfully unsubscribed!</h3>
+                                            <div class="text" style="font-size: 16px; margin-bottom: 25px;">You've been successfully unsubscribed from our newsletter and your email has been removed from the list. we're really sorry to see you go.</div>
                                         </div>
-
-                                        <!--Login Form-->
-                                        <form method="post" action="{{ route('unsubscribe') }}">
-                                           @csrf
-                                            <div class="form-group text-left">
-                                                 <input type="radio" class="form-check-input" name="unsubs_option" value="1">I no longer wish to receive these email
-                                            </div>
-                                            
-                                            <div class="form-group text-left">
-                                                 <input type="radio" class="form-check-input" name="unsubs_option" value="2">Stop sending emails for:
-                                            </div>
-                                            <div class="form-group text-left">
-                                                <select class="form-control" id="sel1" name="unsubs_untill">
-                                                    <option value="1">1 Month</option>
-                                                    <option value="2">2 Months</option>
-                                                    <option value="3">3 Months</option>
-                                                    <option value="4">4 Months</option>
-                                                    <option value="5">5 Months</option>
-                                                    <option value="6">6 Months</option>
-
-                                                </select>
-                                            </div>
-                                            <div class="form-group text-left">
-                                                 <input type="radio" class="form-check-input" name="unsubs_option" value="3">I unsubscribed by accident! Please add me back to this list
-                                            </div>
-
-                                            <div class="form-group btn-box" style="margin-top: 40px;">
-                                                <button class="theme-btn btn-style-three" type="submit" name="submit-form">Confirm</button>
-                                            </div>
-                                        </form> 
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +59,7 @@
                     </div>
                 </div>
                 <div class="social-links">
-                    <ul class="social-icon-two">
+                     <ul class="social-icon-two">
                         <li><a href="https://www.facebook.com/ptedii"><span class="fab fa-facebook-f"></span></a></li>
                         <li><a href="https://twitter.com/ediindonesia"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="https://www.instagram.com/ediindonesia"><span class="fab fa-instagram"></span></a></li>

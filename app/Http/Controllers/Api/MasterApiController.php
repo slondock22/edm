@@ -27,8 +27,10 @@ class MasterApiController extends Controller
     public function getRecepientGroupList()
     {
     	$data = DB::table('tr_recepient_by_group as a')
+                    ->leftjoin('tr_recepient as c','a.recepient_id','c.id')
     				->leftjoin('tm_recepient_group as b', 'a.recepient_group_id','b.id')
     				->select('b.id','b.recepient_group_name',DB::raw('count(a.recepient_id) as recepient_total'))
+                    ->where('c.is_active','1')
     				->groupBy('a.recepient_group_id')
     				->get();
     	return $data;

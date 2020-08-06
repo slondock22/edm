@@ -67,7 +67,10 @@ Route::get('/updateDevice/{role}/{players_id}','OneSignalController@updateDevice
 
 Route::post('/storePlayerIds','OneSignalController@storePlayerIds');
 
-Route::get('/unsubscribe-newsletter', 'CampaignController@showUnsubscribe');
+Route::get('/unsubscribe-newsletter/{encrypt_recepient_id}', 'CampaignController@showUnsubscribe');
+Route::post('/unsubscribe', 'CampaignController@storeUnsubscribe')->name('unsubscribe');
+Route::get('/confirm-unsubscribe', 'CampaignController@showConfirmUnsubscribe');
+
 
 
 
