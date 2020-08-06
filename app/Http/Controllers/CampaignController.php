@@ -104,4 +104,9 @@ class CampaignController extends Controller
 
     	return Redirect::to($url);
     }
+
+    public function showUnsubscribe()
+    {
+        return view('mail.unsubscribe');
+    }
 }

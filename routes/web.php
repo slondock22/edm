@@ -67,6 +67,8 @@ Route::get('/updateDevice/{role}/{players_id}','OneSignalController@updateDevice
 
 Route::post('/storePlayerIds','OneSignalController@storePlayerIds');
 
+Route::get('/unsubscribe-newsletter', 'CampaignController@showUnsubscribe');
+
 
 
 //Admin EO Menu's
