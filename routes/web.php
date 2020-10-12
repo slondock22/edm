@@ -24,6 +24,7 @@ Route::get('/policy', function(){
 
 Route::get('registrasi/{code?}', 'HomeController@index');
 
+Route::get('sendmonday', 'CampaignController@sendMonday');
 
 // Route::get('/{verif_code?}', function(){
 //     return redirect('https://www.trade2gov.com');

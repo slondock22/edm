@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 use DB;
 use Carbon\Carbon;
 use Validator;
+use Mail;
 
 
 
@@ -163,5 +164,23 @@ class CampaignController extends Controller
     public function showConfirmUnsubscribe()
     {
         return view('mail.confirm_unsubscribe');
+    }
+
+    public function sendMonday()
+    {
+        $data = array(
+                    'mail_to' => 'budi@edi-indonesia.co.id',
+                    'name'    => 'Budi Setiawan',
+                );
+
+         Mail::send('mail.monday_campaign', $data, function($message) use ($data)
+            {
+                $message->to($data['mail_to'], $data['name'])
+                    ->cc(['airlangga.pasmika@edi-indonesia.co.id', 'masagung@edi-indonesia.co.id'])
+                    ->from('noreply@monday.edi-indonesia.co.id','EDII - Monday')
+                    ->subject('EDII - Monday Template Email Example');
+            });
+
+         return "sukses";
     }
 }

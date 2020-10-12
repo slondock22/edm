@@ -106,15 +106,15 @@
                 <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
                         <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="sent"></div>
+                            <div id="sent" data-toggle="tooltip" title=""></div>
                             <h6 class="fw-bold mt-3 mb-0">Sent</h6>
                         </div>
                          <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="opened"></div>
+                            <div id="opened" data-toggle="tooltip" title=""></div>
                             <h6 class="fw-bold mt-3 mb-0">Opened</h6>
                         </div>
                         <div class="px-2 pb-2 pb-md-0 text-center">
-                            <div id="clicked"></div>
+                            <div id="clicked" data-toggle="tooltip" title=""></div>
                             <h6 class="fw-bold mt-3 mb-0">Clicked</h6>
                         </div>
                     </div>
@@ -418,6 +418,9 @@ $(document).ready(function(){
             var campaign = id_campaign;
             var url = APP_URL + '/admin/dashboard/circleStatistic/'+campaign;
               $.get(url, function (data){
+                    $('#sent').tooltip('dispose').tooltip({title: data.sent_time});
+                    $('#clicked').tooltip('dispose').tooltip({title: data.click_time});
+                    $('#opened').tooltip('dispose').tooltip({title: data.open_time});
 
             		Circles.create({
             			id:'sent',
@@ -425,7 +428,7 @@ $(document).ready(function(){
             			value:data.sent_time,
             			maxValue:data.total_recepient,
             			width:7,
-            			text: data.sent_time,
+            			text: convertNum(data.sent_time),
             			colors:['#f1f1f1', '#FF9E27'],
             			duration:400,
             			wrpClass:'circles-wrp',
@@ -440,7 +443,7 @@ $(document).ready(function(){
             			value:data.click_time,
             			maxValue:data.total_recepient,
             			width:7,
-            			text: data.click_time,
+            			text: convertNum(data.click_time),
             			colors:['#f1f1f1', '#2BB930'],
             			duration:400,
             			wrpClass:'circles-wrp',
@@ -455,7 +458,7 @@ $(document).ready(function(){
             			value:data.open_time,
             			maxValue:data.total_recepient,
             			width:7,
-            			text: data.open_time,
+            			text: convertNum(data.open_time),
             			colors:['#f1f1f1', '#F25961'],
             			duration:400,
             			wrpClass:'circles-wrp',
@@ -614,6 +617,23 @@ $(document).ready(function(){
             });
         }
 
+function convertNum (labelValue) 
+{
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e+9
+
+    ? Math.round(Math.abs(Number(labelValue)) / 1.0e+9 * 1) / 1 + "B"
+    // Six Zeroes for Millions 
+    : Math.abs(Number(labelValue)) >= 1.0e+6
+
+    ? Math.round(Math.abs(Number(labelValue)) / 1.0e+6 * 1) / 1 + "M"
+    // Three Zeroes for Thousands
+    : Math.abs(Number(labelValue)) >= 1.0e+3
+
+    ? Math.round(Math.abs(Number(labelValue)) / 1.0e+3 * 1) / 1 + "K"
+
+    : Math.abs(Number(labelValue));
+}
 
 // function download_excel(){
 
