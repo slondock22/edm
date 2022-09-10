@@ -293,7 +293,7 @@ class MasterController extends Controller
                         ->select('a.*')
                         ->join('tr_recepient_by_group as b','b.recepient_id','a.id')
                         ->where('b.recepient_group_id',$request->id)
-                        ->where('a.is_active','1')
+                        // ->where('a.is_active','1')
                         ->get();
 
         $list_recepient = DB::table('tr_recepient_by_group')->where('recepient_group_id',$request->id)->pluck('recepient_id');

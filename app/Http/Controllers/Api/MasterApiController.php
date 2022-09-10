@@ -10,7 +10,7 @@ use DB;
 class MasterApiController extends Controller
 {
     public function getRecepient(){
-        return Recepient::where('is_active','1')->orderBy('id','desc')->get();
+        return Recepient::orderBy('id','desc')->get();
     }
 
     public function getRecepientGroup()

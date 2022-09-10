@@ -27,6 +27,7 @@
                                     <th>Email</th>
                                     <th>Phone</th>
                                     <th>Company</th>
+                                    <th>Status</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
                             </thead>
@@ -39,6 +40,13 @@
                                <td>{{$value->recepient_email}}</td>
                                 <td>{{$value->recepient_phone}}</td>
                                 <td>{{$value->recepient_company}}</td>
+                                <td>@if($value->is_active == 1)
+                                    <span class="badge badge-success">Active</span>
+                                    @else
+                                    <span class="badge badge-danger" title="This email cannot receive any broadcasts.">Restricted</span>
+                                    @endif
+                                </td>
+
                                 <td>
                                     <div class="form-button-action">
                                         <input type="hidden" name="id_group" id="id_group" value="{{$group->id}}">

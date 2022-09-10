@@ -271,6 +271,21 @@ $('#recepient-tables').DataTable({
         // {
         //     data: 'event_status'
         // },
+        {
+            data: 'is_active',  render: function(data, type, row) {
+               if(data == '1'){
+                   var status = 'Active';
+                   var title = '';
+                   var color = 'success';
+               }else{
+                   var status = 'Restricted';
+                   var title = 'This email cannot receive any broadcasts.';
+                   var color = 'danger'
+               }
+
+                return '<span class="badge badge-'+color+'" title="'+title+'">'+status+'</span>';
+            }
+        },
         { 	data: 'id',
             render: function(data, type, row) {
                 var action = ' <div class="form-button-action">\

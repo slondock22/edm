@@ -37,8 +37,8 @@ class EventApiController extends Controller
             'event_cat_id' => 'required',
             'event_participant_total' => 'required',
             'event_city' => 'required',
-            'event_end' => 'required',
-            'event_poster'  => 'image|mimes:jpg,png,jpeg'
+            'event_time_end' => 'required',
+            'event_poster'  => 'image|mimes:jpg,png,jpeg|required'
         ]);
 
          if ($validator->fails())

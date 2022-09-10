@@ -95,7 +95,7 @@
             $("#recepient_group_id").empty();
             $("#recepient_group_id").append('<option value="">Choose Recepient Group</option>')
             $.each(data, function(){
-                $("#recepient_group_id").append('<option value="'+ this.id +'">'+ this.recepient_group_name + ' - '+this.recepient_total+' Recepient' +'</option>')
+                $("#recepient_group_id").append('<option value="'+ this.id +'">'+ this.recepient_group_name + ' ('+this.recepient_total+' Active Recepient)' +'</option>')
             });
         });
 

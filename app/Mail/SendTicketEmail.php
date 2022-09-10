@@ -32,8 +32,8 @@ class SendTicketEmail extends Mailable
      */
     public function build()
     {
-        // $filename = 'Ticket-'.$this->content['id'].'.pdf';
-        $filename = 'Ticket.pdf';
+        $filename = 'Ticket-'.$this->content['id'].'.pdf';
+        // $filename = 'Ticket.pdf';
 
         $pdf = $this->path . '/' . $filename;
 

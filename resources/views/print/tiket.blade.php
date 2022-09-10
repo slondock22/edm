@@ -7,12 +7,12 @@
             <div class="card-body">
                 <div class="row p-4" style="margin-bottom: -70px;">
                   <div class="col-md-6">
-                      <img src="{{asset('/assets/landing/images/logo_transparant.png')}}" style="height: auto;">
+                      <img src="{{asset('/assets/admin/img/edii.png')}}" style="height: auto;">
                   </div>
 
                   <div class="col-md-6" style="text-align: right;">
                       <p class="font-weight-bold mb-1">ELECTRONIC TICKET</p>
-                  <p class="text-muted">Coffee Morning IT Inventory Invent2 2019</p>
+                  <p class="text-muted">Coffee Morning Trade2Gov 2022</p>
                   </div>
                 </div>
 
